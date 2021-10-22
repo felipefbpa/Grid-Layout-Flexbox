@@ -1,0 +1,166 @@
+body, ul, li, p{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    margin-bottom: 100px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+h1{
+    text-align: center;
+    margin-top: 50px;
+}
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
+.header{
+    background-color: black;
+    display: flex; /*Coloca itens lado a lado*/
+    flex-wrap: wrap; /*Significa que quando a tela for pequena o menu vai pra baixo do logo*/
+    justify-content: space-between; /*Separa logo e Menu um em cada ponta*/
+    align-items: center;
+    padding: 20px;
+}
+
+.menu{
+    display: flex; /*Coloca itens do menu lado a lado*/
+}
+
+.menu li{
+    margin-left: 10px; /*Dar o espaçamento entre os intens do menu*/
+}
+
+.menu li a{
+    display: block; /*Faz com que o elemento HTML seja renderizado como bloco*/
+    padding: 10px;
+}
+
+/*CSS FLEXBOX1*/
+
+.flex{
+    display: flex;
+    flex-wrap: wrap; /*Significa que pode quebrar a linha e ir pra baixo*/
+    max-width: 800px; /*Reduz o tamanho da área que estpa todo o conteudo (imagens)*/
+    margin: 0 auto; /*Alinha tudo ao centro quando passa dos 800px*/
+}
+
+.flex > div{
+    flex: 1 1 200px; /*Limite de ao menos 200px de largura*/
+    margin: 10px;
+}
+
+/*CSS Grid Layout 1*/
+
+.grid1{
+    display: grid; /*Colocar em Grid*/
+    grid-template-columns: 1fr 1fr 1fr; /*Quantas colunas quero que o Grid tenha*/
+    max-width: 780px; /*Usamos 780px aqui pra resolver o vazamento dos 800px do flexbox de cima.*/
+    margin: 0 auto;
+    grid-gap: 20px; /*Aplica os espaçamentos entre as imagens, sem precisar fazer por margem*/
+}
+
+.grid1 > div:nth-child(n + 4){ /*Pega a partir do 4 item, no caso a 4 imagem*/
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*Divide em 2 linhas*/
+    grid-gap: 10px; /*Aplica os espaçamentos entre as imagens, sem precisar fazer por margem*/
+    align-items: center;
+}
+
+.grid1 > div.anuncio{
+    grid-column: 1; /*Indica que ele deve estar na primeira coluna*/
+    grid-row: 2 / 5; /*Indica que deve estar das linhas 2 até a 5*/
+    display: block;
+}
+
+@media (max-width: 600px){ /*Tudo que tiver menos que 600px muda, para ficar adaptavel as telas*/
+
+    .grid1{
+    grid-template-columns: 1fr 1fr;
+    }
+
+    .grid1 > div:nth-child(n + 4){
+        display: block;
+    }
+
+    .grid1 > div.anuncio{
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
+/*CSS Grid Layout 2*/
+
+.grid2{
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-gap: 20px;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.sidebar > div{
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px){
+    
+    .grid2{
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar{
+        display: flex; /*Coloca itens da sugestão lado a lado*/
+        overflow: scroll; /*Adiciona scroll pra rolar os videos abaixo*/
+    }
+
+    .sidebar > div{
+        flex: 1 0 200px; /*Configurações das imagems abaixo do video menos 600px de resolução*/
+        margin: 0 10px;
+    }
+
+}
+
+/*CSS Grid Layout 3*/
+
+.grid3{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.item:nth-child(1){
+    grid-row: 1 / 3;
+}
+
+.item{
+    display: grid;
+}
+
+.item img{
+    grid-column: 1;
+    grid-row: 1 / 3; /*Divide a imagem e linhas*/
+    align-self: end; /*Alinha sempre ao fim pra não perder formatação*/
+}
+
+.item p{
+    background-color: rgba(0, 0, 0, 0.726);
+    color: white;
+    padding: 10px;
+    grid-column: 1;
+    grid-row: 2; /*Posiciona a legenda sobre a imagem*/
+    align-self: end; /*Alinha sempre ao fim pra não perder formatação*/
+}
